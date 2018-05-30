@@ -146,6 +146,8 @@ do
     -srcdir=*|--srcdir=*)	SRCDIR="$ac_optarg";;
     -target|--target)		ac_prev=TARGET;;
     -target=*|--target=*)	TARGET="$ac_optarg" ;;
+    -host|--host)		ac_prev=HOST;;
+    -host=*|--host=*) 				HOST=foo	;;
     -version|--version)
 	echo "This is TIFF configure $Revision: 1.1.1.1 $"
 	exit 0
