@@ -36,7 +36,7 @@
 POSIXLY_CORRECT=1; export POSIXLY_CORRECT	# disable GNU extensions
 
 QUIET=no				# suppress messages to tty
-NONINTERACTIVE=no			# control prompting of config params
+NONINTERACTIVE=yes			# control prompting of config params
 SITE=					# dir where config.site is located
 TARGET=					# target system identity
 SRCDIR=					# dir where source is located
