@@ -71,8 +71,7 @@ OBJS_EXT=                       # ASM obj. files
 LIBS_EXT=                       # Libararies
 
 PROJ    = pgp
-
-default:
+default: arm-linux
 	@echo "To build PGP on your flavour of Unix, type:"
 	@echo "        make <system>"
 	@echo ""
