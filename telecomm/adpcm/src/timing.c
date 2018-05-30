@@ -7,6 +7,8 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <stdlib.h>
+#include <time.h>
 #include "adpcm.h"
 
 #define DATASIZE 10*1024	/* Data block size */
