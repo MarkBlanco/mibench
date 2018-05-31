@@ -35,6 +35,6 @@ do
     cd ${d}
     # ./configure # Sometimes necessary...
     make clean
-    make
+    make 
     cd $BASE_DIR
 done
