@@ -1,0 +1,74 @@
+{
+	[
+		{
+		"title":"Text Processing",
+		"microbenchmarks":
+		[
+			"automotive-basicmath",
+			"automotive-qsort",
+			"consumer-typeset",
+			"office-ispell"
+		]
+		},
+		{
+		"title":"Email",
+		"microbenchmarks":
+		[
+			"automotive-typeset",
+			"consumer-jpeg",
+			"office-ispell",
+			"security-sha",
+			"telecomm-gsm"
+		]
+		},
+		{
+		"title":"Music Playback",
+		"microbenchmarks":
+		[
+			
+		]
+		},
+		{
+		"title":Browser",
+		"microbenchmarks":
+		[
+			"consumer-typeset",
+			"network-dijkstra",
+			"office-stringsearch",
+			"consumer-jpeg",
+			"automotive-basicmath",
+			"security-sha",
+			"telecomm-FFT",
+			"telecomm-gsm"
+		]
+		},
+		{
+		"title":"Phone Call"
+		},
+		{
+		"title":"Video Playback Local"
+		},
+		{
+		"title":"Video Streaming"
+		},
+		{
+		"title":"Photo Editing"
+		},
+		{
+		"title":"Photo Capture"
+		},
+		{
+		"title":"Video Capture"
+		},
+		{
+		"title":"Texting"
+		},
+		{
+		"title":"Sleep Tracking"
+		}
+
+
+	]
+
+
+}
