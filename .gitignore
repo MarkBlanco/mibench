@@ -1,1 +1,11 @@
 *~
+*.o
+*.a
+*.log
+*.status
+*.cache
+*.cnt
+*.in
+*.lo
+*.stat
+*.hash
