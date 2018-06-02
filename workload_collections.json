@@ -1,46 +1,63 @@
 {
 	"workloads":[
 		{
-			"title":"Text Processing",
+			"title":"Texting",
 			"microbenchmarks":
-			[
-				"automotive-basicmath",
-				"automotive-qsort",
-				"consumer-typeset",
-				"office-ispell"
-			]
+			{
+				"automotive-basicmath":"small",
+				"consumer-typeset":"small",
+				"office-ispell":"large",
+				"consumer-typeset":"small",
+				"automotive-basicmath":"small",
+				"security-sha":"small",
+				"telecomm-FFT":"small",
+				"telecomm-gsm":"small"
+			}
 		},
 		{
 			"title":"Email",
 			"microbenchmarks":
-			[
-				"automotive-typeset",
-				"consumer-jpeg",
-				"office-ispell",
-				"security-sha",
-				"telecomm-gsm"
-			]
-		},
-		{
-			"title":"Music Playback",
-			"microbenchmarks":
-			[
-				"NULL"		
-			]
+			{
+				"consumer-typeset":"large",
+				"consumer-jpeg":"large",
+				"office-ispell":"large",
+				"security-sha":"large",
+				"telecomm-gsm":"large",
+				"consumer-typeset":"large",
+				"consumer-jpeg":"large",
+				"security-sha":"large",
+				"telecomm-gsm":"large",
+				"consumer-typeset":"large",
+				"consumer-jpeg":"large",
+				"consumer-typeset":"large"
+			}
 		},
 		{
 			"title":"Browser",
 			"microbenchmarks":
-			[
-				"consumer-typeset",
-				"network-dijkstra",
-				"office-stringsearch",
-				"consumer-jpeg",
-				"automotive-basicmath",
-				"security-sha",
-				"telecomm-FFT",
-				"telecomm-gsm"
-			]
+			{
+				"consumer-typeset":"large",
+				"network-dijkstra":"small",
+				"security-sha":"small",
+				"telecomm-FFT":"small",
+				"telecomm-gsm":"small",
+				"consumer-typeset":"large",
+				"office-stringsearch":"small",
+				"consumer-typeset":"large",
+				"consumer-jpeg":"small",
+				"consumer-typeset":"large",
+				"automotive-basicmath":"small",
+				"consumer-jpeg":"large",
+				"consumer-jpeg":"small",
+				"consumer-jpeg":"large",
+				"consumer-typeset":"large",
+				"security-sha":"small",
+				"telecomm-FFT":"small",
+				"telecomm-gsm":"small"
+			}
+		},
+		{
+			"title":"Music Playback"
 		},
 		{
 			"title":"Phone Call"
@@ -59,9 +76,6 @@
 		},
 		{
 			"title":"Video Capture"
-		},
-		{
-			"title":"Texting"
 		},
 		{
 			"title":"Sleep Tracking"

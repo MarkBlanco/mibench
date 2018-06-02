@@ -3,6 +3,8 @@ import os, sys
 import subprocess
 import time, random
 
+FNULL = open(os.devnull, 'w')
+
 def rand_affinity():
     affinity_l = 0#random.randint(0, 15)
     affinity_b = random.randint(1, 1) #15)
@@ -14,13 +16,16 @@ def rand_affinity():
 
 # This function is meant to run as a separate process that runs each microbenchmark
 # of a workload in sequence:
-def run_workload(affinity_string, num_threads, executables, name, stats_pipe):
+def run_workload(affinity_string, num_threads, paths, executables, name, stats_pipe):
     cmd = 'taskset --all-tasks ' + '{} {}'
+    bwd = os.getcwd()
     t1 = time.time()
-    for e in executables:
-        print(e)
-        P = subprocess.Popen( [ 'taskset', '--all-tasks', affinity_string, e ] )
+    for e, p in zip(executables, paths):
+        os.chdir(p)
+        print(os.getcwd())
+        P = subprocess.Popen( [ 'taskset', '--all-tasks', affinity_string, e ], stdout=FNULL )
         P.wait()
+        os.chdir(bwd)
     t2 = time.time()
     stats_pipe.send(t2-t1)
 
@@ -30,7 +35,6 @@ class Workload:
         self.name = json_spec["title"]
         self.path = base_path
         self.microbenchmarks = json_spec["microbenchmarks"]
-        print(self.microbenchmarks)
         self.parent_pipe = None
         self.child_pipe = None
         self.process = None
@@ -39,12 +43,13 @@ class Workload:
     # NOTE: Currently will run on just one thread anyways!
     def run(self, affinity=0, threads=1):
         try:
-            executables = [self.path + "/" + b + "/" + "runme_large.sh" for b in self.microbenchmarks]
+            executables = ["./runme_{}.sh".format(s) for b, s in self.microbenchmarks.items()]
+            paths = [self.path + "/" + b + "/" for b, s in self.microbenchmarks.items()] 
             # Open as a separate, persistent process:
             affinity_string, num_threads = rand_affinity()
             self.parent_pipe, self.child_pipe = Pipe()
             self.process = Process(target=run_workload,
-                        args=(affinity_string, num_threads, executables, self.name, self.child_pipe) )
+                        args=(affinity_string, num_threads, paths, executables, self.name, self.child_pipe) )
             self.process.start()
             self.runtime = -1
             return True
