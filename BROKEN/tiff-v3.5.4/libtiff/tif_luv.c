@@ -599,7 +599,6 @@ LogLuvEncodeTile(TIFF* tif, tidata_t bp, tsize_t cc, tsample_t s)
  * Encode/Decode functions for converting to and from user formats.
  */
 #include "uvcode.h"
-
 #define U_NEU	0.210526316
 #define V_NEU	0.473684211
 

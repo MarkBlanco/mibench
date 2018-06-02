@@ -33,8 +33,8 @@ LIBDIR	= ../libtiff
 
 #
 # VERSION:	v3.5.4
-# DATE:		Thu May 31 14:39:22 EDT 2018
-# TARGET:	x86_64-unknown-linux
+# DATE:		Sat Jun  2 14:08:14 EDT 2018
+# TARGET:	
 # CCOMPILER:	/usr/bin/gcc
 #
 SHELL	= /bin/sh
@@ -45,7 +45,7 @@ INSTALL	= ${SHELL} ../port/install.sh
 COPTS	= 
 OPTIMIZER=-O
 IPATH	= -I. -I${SRCDIR} -I${LIBDIR}
-CFLAGS	=  ${COPTS} ${OPTIMIZER} ${IPATH} -lm
+CFLAGS	=  ${COPTS} ${OPTIMIZER} ${IPATH}
 #
 TIFFLIB	= ${DEPTH}/libtiff/libtiff.a
 LIBJPEG	= 
@@ -53,7 +53,7 @@ LIBGZ	=
 LIBTIFF	= ${DEPTH}/libtiff/libtiff.a
 LIBPORT	= 
 MACHLIBS= 
-LIBS	= ${LIBTIFF} ${LIBJPEG} ${LIBGZ} ${LIBPORT} ${MACHLIBS}
+LIBS	= ${LIBTIFF} ${LIBJPEG} ${LIBGZ} ${LIBPORT} ${MACHLIBS} -lm
 #
 OBJS=	\
 	fax2tiff.o \

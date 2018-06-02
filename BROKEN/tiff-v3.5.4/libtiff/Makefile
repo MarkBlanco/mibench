@@ -29,8 +29,8 @@ SRCDIR	= ../libtiff
 
 #
 # VERSION:	v3.5.4
-# DATE:		Thu May 31 14:39:22 EDT 2018
-# TARGET:	x86_64-unknown-linux
+# DATE:		Sat Jun  2 14:08:14 EDT 2018
+# TARGET:	
 # CCOMPILER:	/usr/bin/gcc
 #
 SHELL	= /bin/sh
@@ -63,7 +63,7 @@ IPATH	= -I. -I${SRCDIR}
 CONF_LIBRARY= 
 COPTS	= 
 OPTIMIZER=-O
-CFLAGS	=   ${COPTS} ${OPTIMIZER} ${IPATH} ${CONF_LIBRARY} -lm
+CFLAGS	=   ${COPTS} ${OPTIMIZER} ${IPATH} ${CONF_LIBRARY}
 #
 SRCS	= \
 	tif_aux.c \

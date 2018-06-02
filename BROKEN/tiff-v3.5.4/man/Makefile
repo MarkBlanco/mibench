@@ -31,8 +31,8 @@ SRCDIR	= ../man
 
 #
 # VERSION:	v3.5.4
-# DATE:		Thu May 31 14:39:22 EDT 2018
-# TARGET:	x86_64-unknown-linux
+# DATE:		Sat Jun  2 14:08:14 EDT 2018
+# TARGET:	
 # CCOMPILER:	/usr/bin/gcc
 #
 SHELL	= /bin/sh
