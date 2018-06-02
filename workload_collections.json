@@ -70,6 +70,15 @@
 		},
 		{
 			"title":"Photo Editing"
+			"microbenchmarks":
+			{
+				"consumer-tiffmedian":"large",
+				"consumer-tiff2rgba":"large",
+				"consumer-tiffmedian":"large",
+				"consumer-tiff2rgba":"large",
+				"consumer-tiffmedian":"large",
+				"consumer-tiff2rgba":"large"
+			}
 		},
 		{
 			"title":"Photo Capture"
