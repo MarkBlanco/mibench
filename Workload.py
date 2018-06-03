@@ -64,6 +64,8 @@ class Workload:
         else:
             self.process.join()
             self.runtime = self.parent_pipe.recv()
+            self.parent_pipe.close()
+            self.child_pipe.close() 
             self.parent_pipe = None
             self.child_pipe = None
             self.process = None

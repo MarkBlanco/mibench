@@ -10,7 +10,7 @@ from Workload import *
 FNULL = open(os.devnull, 'w')
 
 bench_prob = 0.4
-period_max = 180
+period_max = 30 
 bench_processes = []
 workloads = []
 path = os.getcwd()
