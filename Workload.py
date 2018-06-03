@@ -20,12 +20,13 @@ def run_workload(affinity_string, num_threads, paths, executables, name, stats_p
     cmd = 'taskset --all-tasks ' + '{} {}'
     bwd = os.getcwd()
     t1 = time.time()
-    for e, p in zip(executables, paths):
-        os.chdir(p)
-        print(os.getcwd())
-        P = subprocess.Popen( [ 'taskset', '--all-tasks', affinity_string, e ], stdout=FNULL )
-        P.wait()
-        os.chdir(bwd)
+    for i in range(50):
+		for e, p in zip(executables, paths):
+			os.chdir(p)
+			print(os.getcwd())
+			P = subprocess.Popen( [ 'taskset', '--all-tasks', affinity_string, e ], stdout=FNULL )
+			P.wait()
+			os.chdir(bwd)
     t2 = time.time()
     stats_pipe.send(t2-t1)
 
