@@ -20,7 +20,7 @@ def run_workload(affinity_string, num_threads, paths, executables, name, stats_p
     cmd = 'taskset --all-tasks ' + '{} {}'
     bwd = os.getcwd()
     t1 = time.time()
-    for i in range(50):
+    for i in range(10):
 		for e, p in zip(executables, paths):
 			os.chdir(p)
 			print(os.getcwd())
