@@ -56,7 +56,7 @@ for idx, wrkld in enumerate(workloads):
     name = wrkld.name
     runtime = 0.0
     geom_runtime = 0.0
-    for i in ITERS:
+    for i in range(ITERS):
         runtime += runtimes[idx][i]
         geom_runtime *= runtimes[idx][i]
     runtime /= ITERS
