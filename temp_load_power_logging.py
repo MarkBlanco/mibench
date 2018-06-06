@@ -26,7 +26,7 @@ def getTelnetPower(SP2_tel, last_power):
 	return total_power
 
 # Time to wait between logging a line in ms (target, not guaranteed)
-DELAY=0.025
+DELAY=0.050
 # power used by ethernet and wifiusb when active (assuming they are active)
 out_file = None
 MAX_SAMPLES = 110000

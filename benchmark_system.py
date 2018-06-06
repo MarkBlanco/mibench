@@ -6,7 +6,7 @@ import json
 
 from Workload import *
 
-ITERS = 10
+ITERS = 5
 
 workloads = []
 path = os.getcwd()
