@@ -8,9 +8,6 @@ from Workload import *
 
 ITERS = 10
 
-FNULL = open(os.devnull, 'w')
-
-bench_processes = []
 workloads = []
 path = os.getcwd()
 
@@ -26,36 +23,42 @@ for workload_spec in json_data['workloads']:
 
 print(workloads)
 
-runtimes = [0.0] * len(workloads)
+runtimes = [[]] * len(workloads)
 
-# Run through all workloads 100 times, taking down time-to-run.
+# Run through all workloads ITERS times, taking down time-to-run.
 # Governor should be running in the background here to log thermals and board power.
+print("name\tstartts\tendts\truntime(s)\titeration")
 for i in range(ITERS):
     for idx, wrkld in enumerate(workloads):
-        print("starting new workload run:")
         # Launch the benchmark as a subprocess:
-        if wrkld.run():
-            bench_processes.append(wrkld.get_running_process())
+        start = time.time()
+        if wrkld.run(affinity=15):
             name = wrkld.name
-            print("Launched workload: {}".format(name))
-            wrkld.join():
+            #print("Launched workload: {}".format(name))
+            wrkld.join()
             runtime = wrkld.get_last_runtime()
-            runtimes[idx] += runtime
-            print("Runtime was {} seconds for {}.".format(runtime, name))
+            runtimes[idx].append(runtime)
+            #print("Runtime was {} seconds for {}.".format(runtime, name))
         else:
-            print("Failed to launch {}".format(workloads[bm_index].name) )
+            print("Failed to launch {}".format(name) )
             sys.exit(1)
+        end = time.time()
+        print("{}\t{}\t{}\t{}\t{}".format(name, start, end, runtime, i))
         wait_time = 30
-        print("Waiting for {} minutes before spawning another process.".format(wait_time/60.0))
+        #print("Waiting for {} minutes before spawning another process.".format(wait_time/60.0))
         time.sleep(wait_time)
 
 print("*"*40)
-print("Workload average runtime summary over {} iterations".format(ITERS))
+print("Workload geometric average runtime summary over {} iterations".format(ITERS))
 print("*"*40)
-print("Name\tRuntime")
+print("Name\tRuntimeAvg\tGeomAvg")
 for idx, wrkld in enumerate(workloads):
     name = wrkld.name
-    runtime = runtimes[idx] / ITERS
-    print("{}\t{}".format(name, runtime)
-
-
+    runtime = 0.0
+    geom_runtime = 0.0
+    for i in ITERS:
+        runtime += runtimes[idx][i]
+        geom_runtime *= runtimes[idx][i]
+    runtime /= ITERS
+    geom_runtime = geom_runtime**(1/float(ITERS))
+    print("{}\t{}\t{}".format(name, runtime, geom_runtime))

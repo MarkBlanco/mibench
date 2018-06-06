@@ -5,12 +5,18 @@ import time, random
 
 FNULL = open(os.devnull, 'w')
 
-def rand_affinity():
+def rand_affinity(baffinity=None, threads=None):
     affinity_l = 0#random.randint(0, 15)
-    affinity_b = random.randint(1, 1) #15)
+    if baffinity is None:
+        affinity_b = random.randint(1, 1) #15)
+    else:
+        affinity_b = baffinity
     affinity = affinity_l | (affinity_b << 4)
     affinity_string = hex(affinity)
-    num_threads = bin(affinity).count("1")#random.randint(1, bin(affinity).count("1"))
+    if threads is None:
+        num_threads = bin(affinity).count("1")#random.randint(1, bin(affinity).count("1"))
+    else:
+        num_threads = threads
     return affinity_string, num_threads
 
 
@@ -23,7 +29,7 @@ def run_workload(affinity_string, num_threads, paths, executables, name, stats_p
     for i in range(10):
 		for e, p in zip(executables, paths):
 			os.chdir(p)
-			print(os.getcwd())
+			#print(os.getcwd())
 			P = subprocess.Popen( [ 'taskset', '--all-tasks', affinity_string, e ], stdout=FNULL )
 			P.wait()
 			os.chdir(bwd)
@@ -42,12 +48,15 @@ class Workload:
         self.runtime = -1
 
     # NOTE: Currently will run on just one thread anyways!
-    def run(self, affinity=0, threads=1):
+    # Threads isn't actually implemented anywhere...
+    def run(self, affinity=4, threads=None):
+        if threads is not None:
+            raise Exception("Number of threads is fixed to affinity or workload limit. Cannot be selected.")
         try:
             executables = ["./runme_{}.sh".format(s) for b, s in self.microbenchmarks.items()]
             paths = [self.path + "/" + b + "/" for b, s in self.microbenchmarks.items()] 
             # Open as a separate, persistent process:
-            affinity_string, num_threads = rand_affinity()
+            affinity_string, num_threads = rand_affinity(baffinity=affinity, threads=threads)
             self.parent_pipe, self.child_pipe = Pipe()
             self.process = Process(target=run_workload,
                         args=(affinity_string, num_threads, paths, executables, self.name, self.child_pipe) )
